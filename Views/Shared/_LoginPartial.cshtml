@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item dropdown mx-3 user-menu">
+        <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">
+            <img src="~/Assets/img/man.png" class="user-image rounded-circle shadow" alt="User Image" />
+            <span class="d-none d-md-inline text-white">
+                @User.Identity?.Name
+            </span>
+        </a>
+        <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow dropdown-menu-lg">
+            <li class="user-header text-bg-primary bg-primary">
+                <img src="~/Assets/img/man.png" class="rounded-circle shadow" alt="User Image" />
+                <p>
+                    @User.Identity?.Name - Administrator
+                </p>
+            </li>
+            <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Account</a></li>
+            <li>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link btn-sm btn-outline-light text-dark ml-3 mb-2">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </li>
+
+    @*<li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>*@
+}
