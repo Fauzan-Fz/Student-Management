@@ -1,0 +1,152 @@
+﻿<div class="container">
+    <div class="row mb-2 mt-3">
+        <div class="col-sm-12">
+            <ol class="breadcrumb float-sm-right bg-transparent">
+                <li class="breadcrumb-item"><a asp-action="Index" class="text-black"><i class="bi bi-speedometer2 text-black"></i> Menu</a></li>
+                <li class="breadcrumb-item active">Charts</li>
+            </ol>
+        </div><!-- /.col -->
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grafik Gender Chart</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="container1" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Grafik Tahun Kelahiran Siswa Chart</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <canvas id="container2" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ambil data dari ViewBag
+            var labels = @Html.Raw(ViewBag.Labels);
+            var data   = @Html.Raw(ViewBag.Data);
+
+            // Hard-code warna
+            const bgColors = [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 99, 132, 0.7)'
+            ];
+            const borderColors = [
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 99, 132, 1)'
+            ];
+
+            // Inisialisasi Chart.js
+            var ctx = document.getElementById('container1').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',          // harus string
+                data: {
+                    labels: labels,
+                    datasets: [{          // jamak: datasets
+                        data: data,
+                        backgroundColor: bgColors,
+                        borderColor: borderColors,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'    // ada posisi bukan display
+                        },
+                        title: {
+                            display: true,       // memperbaiki typo
+                            text: 'Distribusi Jenis Kelamin'
+                        }
+                    }
+                }
+            });
+        });
+</script>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        // Ambil data dari ViewBag
+        var labelsTahun = @Html.Raw(ViewBag.LabelsTahun);
+        var dataTahun = @Html.Raw(ViewBag.DataTahun);
+
+        // Hard-code warna
+        const bgColors = [
+            'rgba(39, 157, 245, 0.8)',
+            'rgba(245, 144, 145, 0.8)',
+            'rgba(245, 144, 59, 0.8)',
+            'rgba(226, 201, 38, 0.8)',
+            'rgba(39, 245, 102, 0.8)'
+        ];
+        const borderColors = [
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(255, 255, 255, 0.8)',
+            'rgba(255, 255, 255, 0.8)'
+        ];
+
+        // Inisialisasi Chart.js
+        var ctx = document.getElementById('container2').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',          // harus string
+            data: {
+                labels: labelsTahun,
+                datasets: [{          // jamak: datasets
+                    data: dataTahun,
+                    label: 'Data Kelahiran Siswa',
+                    backgroundColor: bgColors,
+                    borderColor: borderColors,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false    // ← matikan legend
+                        },
+                        title: {
+                            display: true,
+                            text: ''          // judul kosong
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>

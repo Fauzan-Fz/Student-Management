@@ -1,0 +1,54 @@
+﻿@model StudentManagementSystem.Models.DataSiswa
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@*<h1>Delete</h1>*@
+
+<div class="card rounded-4 mt-3">
+    <div class="card-body">
+        <div class="d-flex align-items-center">
+            <h3>Apakah anda yakin ingin menghapus data ini?</h3>
+        </div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NIM)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NIM)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nama)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nama)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TanggalLahir)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TanggalLahir)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.JenisKelamin)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.JenisKelamin)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Alamat)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Alamat)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger mr-1" /> |
+            <a asp-controller="Home" asp-action="Index" class="btn btn-warning ml-1">Back to List</a>
+        </form>
+    </div>
+</div>

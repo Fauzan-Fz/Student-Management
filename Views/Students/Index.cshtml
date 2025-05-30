@@ -1,0 +1,88 @@
+﻿@model IEnumerable<StudentManagementSystem.Models.DataSiswa>
+
+@{
+    ViewData["Title"] = "Data Siswa";
+}
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <p>
+                            <a asp-action="Create" class="btn btn-success float-end mr-2">Tambah Siswa</a>
+                        </p>
+                        <h3 class="my-auto"><i class="bi bi-mortarboard-fill"></i> Tabel Siswa</h3>
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NIM)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Nama)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TanggalLahir)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.JenisKelamin)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Alamat)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NIM)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nama)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TanggalLahir)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.JenisKelamin)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Alamat)
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Students">
+                                                <i class="bi bi-pencil-fill btn btn-primary"></i>
+                                            </a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Students">
+                                                <i class="bi bi-x-lg btn btn-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    @if (TempData["AlertMessageAdd"] != null)
+    {
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses!',
+            text: '@TempData["AlertMessageAdd"]',
+            confirmButtonText: 'OK'
+        });
+        </script>
+    }
+}
