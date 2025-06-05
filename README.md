@@ -4,9 +4,9 @@ Aplikasi **Student Management** adalah web berbasis .NET Framework yang digunaka
 
 ## Fitur
 
--CRUD data siswa (Create, Read, Update, Delete).
--Pencarian dan filter siswa.
--Tampilan responsif.
+- CRUD data siswa (Create, Read, Update, Delete).
+- Pencarian dan filter siswa.
+- Tampilan responsif.
 
 ## Teknologi yang Digunakan
 
