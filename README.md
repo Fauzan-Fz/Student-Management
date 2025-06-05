@@ -1,6 +1,6 @@
 # Student Management
 
-Aplikasi **Student Management** adalah web berbasis .NET Framework yang digunakan untuk mengelola data siswa. Aplikasi ini memanfaatkan SQL Server sebagai basis data dan menggunakan AdminLTE sebagai template tampilan.
+Aplikasi **Student Management** adalah web berbasis ASP.NET yang digunakan untuk mengelola data siswa. Aplikasi ini memanfaatkan SQL Server sebagai basis data dan menggunakan AdminLTE sebagai template tampilan.
 
 ## Fitur
 
