@@ -16,4 +16,3 @@ Aplikasi **Student Management** adalah web berbasis .NET Framework yang digunaka
 - .NET Framework
 - SQL Server
 - AdminLTE (Template)
--
