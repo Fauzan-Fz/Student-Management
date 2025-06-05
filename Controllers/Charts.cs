@@ -15,6 +15,7 @@ namespace StudentManagementSystem.Controllers
 
         public IActionResult Index()
         {
+            // Mendapatkan data Gender Siswa dari database
             var jenisKelamin_Siswa = _context.Students
                 .GroupBy(s => s.JenisKelamin)
                 .Select(g => new
@@ -27,9 +28,11 @@ namespace StudentManagementSystem.Controllers
             var labels = jenisKelamin_Siswa.Select(g => g.jenisKelamin).ToArray();
             var data = jenisKelamin_Siswa.Select(g => g.jumlah).ToArray();
 
+            // Menjadikan data menjadi JSON
             ViewBag.Labels = JsonSerializer.Serialize(labels);
             ViewBag.Data = JsonSerializer.Serialize(data);
 
+            // Mendapatkan data Tahun Kelahiran Siswa dari database
             var tahunKelahiran = _context.Students
                 .GroupBy(s => s.TanggalLahir.Year)
                 .Select(g => new

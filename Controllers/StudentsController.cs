@@ -23,20 +23,20 @@ namespace StudentManagementSystem.Controllers
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id) // Method untuk menampilkan data berdasarkan id pada view Details
         {
-            if (id == null) // Jika id null atau tidak ditemukan
+            if (id == null)
             {
-                return NotFound(); // Maka akan menampilkan halaman not found
+                return NotFound();
             }
 
             var dataSiswa = await _context.Students
-                .FirstOrDefaultAsync(m => m.Id == id); // Mendapatkan data berdasarkan id Siswa
+                .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (dataSiswa == null) // Jika data Siswa tidak ditemukan atau null
+            if (dataSiswa == null)
             {
-                return NotFound(); // Maka akan menampilkan halaman not found
+                return NotFound();
             }
 
-            return View(dataSiswa); // Maka akan menampilkan data Siswa
+            return View(dataSiswa);
         }
 
         // GET: Students/Create
@@ -52,14 +52,14 @@ namespace StudentManagementSystem.Controllers
         [ValidateAntiForgeryToken] // Memeriksa token anti-forgery untuk mencegah CSRF
         public async Task<IActionResult> Create(DataSiswa dataSiswa) // Method/Class untuk menambahkan data Siswa
         {
-            if (ModelState.IsValid) // Jika model valid
+            if (ModelState.IsValid)
             {
-                _context.Add(dataSiswa); // Menambahkan data Siswa
-                await _context.SaveChangesAsync(); // Menyimpan perubahan
+                _context.Add(dataSiswa);
+                await _context.SaveChangesAsync();
 
-                TempData["AlertMessageAdd"] = "Data berhasil ditambahkan!"; // Menampilkan pesan sukses menggunakan SweetAlert
+                TempData["AlertMessageAdd"] = "Data berhasil ditambahkan!";
 
-                return RedirectToAction("Index", "Home"); // Mengarahkan ke halaman Index
+                return RedirectToAction("Index", "Home");
             }
 
             return View(dataSiswa);
